@@ -1,9 +1,14 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = 3000;
 
+// Serve static files (HTML, CSS, etc.)
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve index.html for root route
 app.get('/', (req, res) => {
-  res.send('Hello from Dockerized Node.js app!');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
